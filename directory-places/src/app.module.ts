@@ -1,10 +1,13 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module, OnModuleInit } from '@nestjs/common';
+import { PlacesModule } from './places/places.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { mysqlConfig } from './config/database.config';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [PlacesModule, TypeOrmModule.forRoot(mysqlConfig)],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  onModuleInit() {
+    console.log('✅ Conexión con MySQL iniciada correctamente');
+  }
+}
