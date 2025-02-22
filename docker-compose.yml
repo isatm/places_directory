@@ -1,0 +1,53 @@
+# Contenedor basado en la imagen de Dockerfile
+services:
+  app:
+    container_name: places
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./directory-places:/app
+    depends_on:
+      - mongodb
+      - mysql
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_USER=isa
+      - MONGO_PASSWORD=12345
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3307 
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+    networks:
+      - red_places_directory
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=isa
+      - MONGO_INITDB_ROOT_PASSWORD=12345 
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - red_places_directory
+
+  mysql:
+    image: mysql:8.4.4
+    ports:
+      - "3307:3306"
+    environment: 
+      - MYSQL_ROOT_PASSWORD=12345 
+    volumes:
+      - mysql_data:/var/lib/sql  
+    networks:
+      - red_places_directory
+
+volumes:
+  mongo_data:
+  mysql_data:
+
+networks:
+  red_places_directory:
