@@ -25,7 +25,7 @@ export class Place extends Model {
     primaryKey: true,
     allowNull: false,
   })
-  place_id: string;
+  place_id: number;
 
   /**
    * Nombre del lugar.

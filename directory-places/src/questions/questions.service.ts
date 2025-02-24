@@ -6,7 +6,9 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 
 @Injectable()
 export class QuestionsService {
-  constructor(@InjectModel(Question.name) private questionModel: Model<QuestionDocument>) {}
+  constructor(
+    @InjectModel(Question.name) private questionModel: Model<QuestionDocument>,
+  ) {}
 
   async create(createQuestionDto: CreateQuestionDto): Promise<Question> {
     const newQuestion = new this.questionModel(createQuestionDto);
