@@ -15,7 +15,7 @@ services:
       - MONGO_USER=isa
       - MONGO_PASSWORD=12345
       - MYSQL_HOST=mysql
-      - MYSQL_PORT=3307
+      - MYSQL_PORT=3306
       - MYSQL_USER=root
       - MYSQL_PASSWORD=12345
     networks:

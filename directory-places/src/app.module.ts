@@ -14,18 +14,15 @@ import { AnswersModule } from './answers/answers.module';
 
 @Module({
   imports: [
-    
     PlacesModule,
     ReviewsModule, 
     QuestionsModule, 
     AnswersModule,
-   
     SequelizeModule.forRoot(mysqlConfig),
     CategoriesModule,
     TagsModule,
     PlaceTagsModule,
-  , // Configuración de MySQL
-    MongooseModule.forRoot(mongoConfig.uri, mongoConfig.options), // Configuración de MongoDB
+    MongooseModule.forRoot(mongoConfig.uri, mongoConfig.options),
   ],
 })
 export class AppModule implements OnModuleInit {
