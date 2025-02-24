@@ -1,4 +1,3 @@
-# Contenedor basado en la imagen de Dockerfile
 services:
   app:
     container_name: places
