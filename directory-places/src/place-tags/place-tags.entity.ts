@@ -22,6 +22,7 @@ export class PlaceTag extends Model<PlaceTag> {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    primaryKey: true, // 🔹 Aquí se agrega la clave primaria sin usar @PrimaryKey()
   })
   place_id: number;
 
@@ -33,6 +34,7 @@ export class PlaceTag extends Model<PlaceTag> {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    primaryKey: true, // 🔹 También se agrega aquí como parte de la clave compuesta
   })
   tag_id: number;
 }

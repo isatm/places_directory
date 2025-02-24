@@ -11,12 +11,11 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { QuestionsModule } from './questions/questions.module';
 import { AnswersModule } from './answers/answers.module';
 
-
 @Module({
   imports: [
     PlacesModule,
-    ReviewsModule, 
-    QuestionsModule, 
+    ReviewsModule,
+    QuestionsModule,
     AnswersModule,
     SequelizeModule.forRoot(mysqlConfig),
     CategoriesModule,

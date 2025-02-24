@@ -5,8 +5,11 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
+  BelongsToMany,
 } from 'sequelize-typescript';
 import { Category } from '../categories/categories.entity';
+import { Tag } from '../tags/tags.entity';
+import { PlaceTag } from '../place-tags/place-tags.entity';
 
 /**
  * Representa la entidad place de la base de datos.
@@ -84,4 +87,14 @@ export class Place extends Model {
    */
   @BelongsTo(() => Category)
   category: Category;
+
+  /**
+   * Relación Muchos a Muchos con `Tag`.
+   * Un lugar (`Place`) puede tener múltiples etiquetas (`Tag`).
+   * Una etiqueta (`Tag`) puede estar asociada a múltiples lugares.
+   *
+   * La relación se gestiona a través de la tabla intermedia `PlaceTag`.
+   */
+  @BelongsToMany(() => Tag, () => PlaceTag)
+  tags: Tag[];
 }
