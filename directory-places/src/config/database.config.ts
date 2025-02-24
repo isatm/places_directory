@@ -1,12 +1,13 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import 'dotenv/config'; // ← Asegura que las variables .env se carguen
+import { SequelizeModuleOptions } from '@nestjs/sequelize';
+import 'dotenv/config';
 
-export const mysqlConfig: TypeOrmModuleOptions = {
-  type: 'mysql',
+export const mysqlConfig: SequelizeModuleOptions = {
+  dialect: 'mysql',
   host: process.env.MYSQL_HOST,
   port: Number(process.env.MYSQL_PORT),
   username: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
-  autoLoadEntities: true, // Carga automáticamente las entidades
+  autoLoadModels: true,
+  synchronize: true,
 };
