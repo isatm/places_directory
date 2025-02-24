@@ -8,4 +8,6 @@ RUN npm install
 COPY directory-places/ .  
 
 EXPOSE 3000
+EXPOSE 27017
+EXPOSE 3306
 CMD ["npm", "run", "start:dev"]
