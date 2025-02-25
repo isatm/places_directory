@@ -1,4 +1,4 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module, OnModuleInit, Logger } from '@nestjs/common';
 import { PlacesModule } from './places/places.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -6,18 +6,18 @@ import { mysqlConfig } from './config/database.config';
 import { CategoriesModule } from './categories/categories.module';
 import { TagsModule } from './tags/tags.module';
 import { PlaceTagsModule } from './place-tags/place-tags.module';
-import { mongoConfig } from './config/mongo.config'; // Asegúrate de tener este archivo
 import { ReviewsModule } from './reviews/reviews.module';
-import { QuestionsModule } from './questions/questions.module';
-import { AnswersModule } from './answers/answers.module';
+import { QuestionsAndAnswersModule } from './questionsAndAnswers/questionsAndAnswers.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MediaModule } from './media/media.module';
+import { mongoConfig } from './config/mongo.config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     PlacesModule,
     ReviewsModule,
-    QuestionsModule,
-    AnswersModule,
+    QuestionsAndAnswersModule,
     SequelizeModule.forRoot(mysqlConfig),
     CategoriesModule,
     TagsModule,
@@ -27,7 +27,9 @@ import { MediaModule } from './media/media.module';
   ],
 })
 export class AppModule implements OnModuleInit {
+  private readonly logger = new Logger(AppModule.name);
+  
   onModuleInit() {
-    console.log('✅ Conexión con MySQL y MongoDB iniciada correctamente');
+    this.logger.log('✅ Aplicación inicializada correctamente');
   }
 }
