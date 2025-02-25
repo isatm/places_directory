@@ -4,6 +4,7 @@ import { Place } from '../places/places.entity';
 import { Tag } from '../tags/tags.entity';
 import { PlaceTag } from '../place-tags/place-tags.entity';
 import { Category } from '../categories/categories.entity';
+import { Media } from '../media/media.entity';
 
 export const mysqlConfig: SequelizeModuleOptions = {
   dialect: 'mysql',
@@ -14,5 +15,5 @@ export const mysqlConfig: SequelizeModuleOptions = {
   database: process.env.MYSQL_DATABASE,
   autoLoadModels: true,
   synchronize: true,
-  models: [Place, Tag, PlaceTag, Category],
+  models: [Place, Tag, PlaceTag, Category, Media],
 };

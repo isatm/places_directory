@@ -6,10 +6,12 @@ import {
   ForeignKey,
   BelongsTo,
   BelongsToMany,
+  HasMany,
 } from 'sequelize-typescript';
 import { Category } from '../categories/categories.entity';
 import { Tag } from '../tags/tags.entity';
 import { PlaceTag } from '../place-tags/place-tags.entity';
+import { Media } from '../media/media.entity';
 
 /**
  * Representa la entidad place de la base de datos.
@@ -17,7 +19,7 @@ import { PlaceTag } from '../place-tags/place-tags.entity';
 @Table({ tableName: 'places' })
 export class Place extends Model {
   /**
-   * Identificador único del lugar (UUID generado automáticamente).
+   * Identificador único del lugar.
    */
   @Column({
     type: DataType.INTEGER,
@@ -73,7 +75,7 @@ export class Place extends Model {
   place_description: string;
   /**
    * Identificador de la categoría a la que pertenece el lugar.
-   * Es una clave foránea que referencia a `Category`.
+   * Es una clave foránea que referencia a Category.
    */
   @ForeignKey(() => Category)
   @Column({
@@ -82,19 +84,26 @@ export class Place extends Model {
   })
   categoryId: number;
   /**
-   * Relación Muchos a Uno con `Category`.
+   * Relación Muchos a Uno con Category.
    * Un lugar pertenece a una única categoría.
    */
   @BelongsTo(() => Category)
   category: Category;
 
   /**
-   * Relación Muchos a Muchos con `Tag`.
-   * Un lugar (`Place`) puede tener múltiples etiquetas (`Tag`).
-   * Una etiqueta (`Tag`) puede estar asociada a múltiples lugares.
+   * Relación Muchos a Muchos con Tag.
+   * Un lugar  puede tener múltiples etiquetas .
+   * Una etiqueta  puede estar asociada a múltiples lugares.
    *
-   * La relación se gestiona a través de la tabla intermedia `PlaceTag`.
+   * La relación se gestiona a través de la tabla intermedia PlaceTag.
    */
   @BelongsToMany(() => Tag, () => PlaceTag)
   tags: Tag[];
+  /**
+   *  Relación Uno a Muchos con `Media`.
+   *
+   * Un lugar puede tener múltiples imágenes asociadas.
+   */
+  @HasMany(() => Media)
+  media: Media[];
 }

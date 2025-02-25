@@ -10,6 +10,7 @@ import { mongoConfig } from './config/mongo.config'; // Asegúrate de tener este
 import { ReviewsModule } from './reviews/reviews.module';
 import { QuestionsModule } from './questions/questions.module';
 import { AnswersModule } from './answers/answers.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AnswersModule } from './answers/answers.module';
     TagsModule,
     PlaceTagsModule,
     MongooseModule.forRoot(mongoConfig.uri, mongoConfig.options),
+    MediaModule,
   ],
 })
 export class AppModule implements OnModuleInit {
