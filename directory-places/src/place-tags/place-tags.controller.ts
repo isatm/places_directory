@@ -9,7 +9,7 @@ export class PlaceTagsController {
   constructor(private readonly placeTagsService: PlaceTagsService) {}
 
   /**
-   * ✅ Asigna una etiqueta a un lugar.
+   *  Asigna una etiqueta a un lugar.
    */
   @Post()
   create(@Body() createPlaceTagDto: CreatePlaceTagDto): Promise<PlaceTag> {
@@ -17,7 +17,7 @@ export class PlaceTagsController {
   }
 
   /**
-   * ✅ Obtiene todas las relaciones `PlaceTag`.
+   *  Obtiene todas las relaciones `PlaceTag`.
    */
   @Get()
   findAll(): Promise<PlaceTag[]> {
@@ -25,7 +25,7 @@ export class PlaceTagsController {
   }
 
   /**
-   * ✅ Elimina la relación entre un lugar y una etiqueta.
+   *  Elimina la relación entre un lugar y una etiqueta.
    */
   @Delete()
   remove(@Body() deletePlaceTagDto: DeletePlaceTagDto): Promise<void> {
