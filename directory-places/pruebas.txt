@@ -145,3 +145,114 @@ CRUD ENDPOINTS
 [DELETE] Eliminar una imagen
    URL: /media/:id  
    DELETE http://localhost:4000/media/1
+
+
+
+
+-------------------------
+         REVIEW
+-------------------------
+[POST] Crear una reseña
+URL: /reviews
+Body (JSON):
+{
+  "placeId": "65d9a1f123abc4567890def1",
+  "user": "John Doe",
+  "rating": 5,
+  "comment": "Excelente lugar, muy recomendado."
+}
+
+[GET] Obtener todas las reseñas de un lugar
+URL: /reviews/place/{placeId}
+Respuesta esperada (JSON):
+[
+  {
+    "_id": "65d9b2c345abc6789012def3",
+    "placeId": "65d9a1f123abc4567890def1",
+    "user": "John Doe",
+    "rating": 5,
+    "comment": "Excelente lugar, muy recomendado.",
+    "multimedia": []
+  }
+]
+
+[GET] Obtener una reseña por ID
+URL: /reviews/{id}
+Respuesta esperada (JSON):
+{
+  "_id": "65d9b2c345abc6789012def3",
+  "placeId": "65d9a1f123abc4567890def1",
+  "user": "John Doe",
+  "rating": 5,
+  "comment": "Excelente lugar, muy recomendado.",
+  "multimedia": []
+}
+
+[PUT] Actualizar una reseña
+URL: /reviews/{id}
+Body (JSON):
+{
+  "rating": 4,
+  "comment": "Buen lugar, pero el servicio podría mejorar."
+}
+
+
+[DELETE] Eliminar una reseña
+URL: /reviews/{id}
+Respuesta esperada (JSON):
+{
+  "message": "Reseña eliminada correctamente."
+}
+
+-------------------------
+QUESTIONS AND ANSWERS
+-------------------------
+[POST] Crear una pregunta
+ URL: /questions-and-answers
+ Body (JSON):
+ {
+   "placeId": "65d9a1f123abc4567890def1",
+   "user": "John Doe",
+   "questionText": "¿Este lugar tiene estacionamiento?"
+ }
+ 
+ [POST] Crear una respuesta a una pregunta
+ URL: /questions-and-answers
+ Body (JSON):
+ {
+   "placeId": "65d9a1f123abc4567890def1",
+   "user": "Admin",
+   "answerText": "Sí, hay estacionamiento gratuito.",
+   "parentId": "65d9b2c345abc6789012def3"
+ }
+ 
+
+ [GET] Obtener todas las preguntas y respuestas de un lugar
+ URL: /questions-and-answers/place/{placeId}
+ Ejemplo: /questions-and-answers/place/65d9a1f123abc4567890def1
+ 
+ [GET] Obtener una pregunta o respuesta por ID
+ URL: /questions-and-answers/{id}
+ Ejemplo: /questions-and-answers/65d9b2c345abc6789012def3
+ 
+ [PUT] Actualizar una pregunta o respuesta
+ URL: /questions-and-answers/{id}
+ Body (JSON):
+ {
+   "answerText": "Sí, hay estacionamiento techado y gratuito."
+ }
+ 
+ [DELETE] Eliminar una pregunta o respuesta
+ URL: /questions-and-answers/{id}
+
+ -------------------------
+        FILE
+-------------------------
+ [POST] Subir un archivo
+ URL: /files/upload
+ Form-Data:
+ - file: (archivo a subir)
+ 
+ [GET] Descargar un archivo
+ URL: /files/{id}
+ Ejemplo: /files/65d9e7f123abc4567890def1

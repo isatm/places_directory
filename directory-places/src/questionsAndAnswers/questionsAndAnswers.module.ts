@@ -7,6 +7,9 @@ import {
   QuestionsAndAnswersSchema,
 } from './questionsAndAnswers.schema';
 
+/**
+ * modulo de question and answers
+ */
 @Module({
   imports: [
     MongooseModule.forFeature([

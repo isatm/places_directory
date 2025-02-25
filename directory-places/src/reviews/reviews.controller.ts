@@ -16,39 +16,65 @@ import { Express } from 'express';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 
+/**
+ * Controlador para gestionar las reseñas.
+ */
 @Controller('reviews')
 export class ReviewsController {
+  /**
+   * Constructor del controlador de reseñas.
+   * @param reviewsService Servicio de reseñas.
+   */
   constructor(private readonly reviewsService: ReviewsService) {}
 
-  // Crear una reseña con archivos multimedia
+  /**
+   * Crea una nueva reseña con archivos multimedia opcionales.
+   * @param files Archivos multimedia subidos.
+   * @returns La reseña creada.
+   */
   @Post()
   @UseInterceptors(FilesInterceptor('files'))
-  async create(
-    @UploadedFiles() files: Multer.File[],
-  ) {
+  async create(@UploadedFiles() files: Multer.File[]) {
     const createReviewDto = new CreateReviewDto();
     return this.reviewsService.create(createReviewDto, files);
   }
 
-  // Obtener todas las reseñas de un lugar
+  /**
+   * Obtiene todas las reseñas de un lugar específico.
+   * @param placeId Identificador del lugar.
+   * @returns Lista de reseñas del lugar.
+   */
   @Get('place/:placeId')
   findAllByPlaceId(@Param('placeId') placeId: string) {
     return this.reviewsService.findAllByPlaceId(placeId);
   }
 
-  // Obtener una reseña por su ID
+  /**
+   * Obtiene una reseña por su identificador.
+   * @param id Identificador de la reseña.
+   * @returns La reseña encontrada o null si no existe.
+   */
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reviewsService.findOne(id);
   }
 
-  // Actualizar una reseña
+  /**
+   * Actualiza una reseña existente.
+   * @param id Identificador de la reseña a actualizar.
+   * @param updateReviewDto Datos a actualizar en la reseña.
+   * @returns La reseña actualizada.
+   */
   @Put(':id')
   update(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
     return this.reviewsService.update(id, updateReviewDto);
   }
 
-  // Eliminar una reseña
+  /**
+   * Elimina una reseña por su identificador.
+   * @param id Identificador de la reseña a eliminar.
+   * @returns La reseña eliminada o null si no existe.
+   */
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reviewsService.remove(id);
