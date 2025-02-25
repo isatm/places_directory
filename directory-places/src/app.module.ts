@@ -19,7 +19,7 @@ import { QuestionsAndAnswersModule } from './questionsAndAnswers/questionsAndAns
     CategoriesModule,
     TagsModule,
     PlaceTagsModule,
-    MongooseModule.forRoot(mongoConfig.uri, mongoConfig.options),
+    MongooseModule.forRoot("mongodb://isa:12345@mongodb:27017/open_directory?authSource=admin", mongoConfig.options),
   ],
 })
 export class AppModule implements OnModuleInit {
