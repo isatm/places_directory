@@ -8,15 +8,13 @@ import { TagsModule } from './tags/tags.module';
 import { PlaceTagsModule } from './place-tags/place-tags.module';
 import { mongoConfig } from './config/mongo.config'; // Asegúrate de tener este archivo
 import { ReviewsModule } from './reviews/reviews.module';
-import { QuestionsModule } from './questionsAndAnswers/questionsAndAnswers.module';
-import { AnswersModule } from './answers/answers.module';
+import { QuestionsAndAnswersModule } from './questionsAndAnswers/questionsAndAnswers.module';
 
 @Module({
   imports: [
     PlacesModule,
     ReviewsModule,
-    QuestionsModule,
-    AnswersModule,
+    QuestionsAndAnswersModule,
     SequelizeModule.forRoot(mysqlConfig),
     CategoriesModule,
     TagsModule,
