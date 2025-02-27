@@ -22,7 +22,7 @@ import { mongoConfig } from './config/mongo.config';
     CategoriesModule,
     TagsModule,
     PlaceTagsModule,
-    MongooseModule.forRoot(mongoConfig.uri, mongoConfig.options),
+    MongooseModule.forRoot(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/demo_nest?authSource=admin`),
     MediaModule,
   ],
 })

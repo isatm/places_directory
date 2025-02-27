@@ -12,23 +12,22 @@ services:
     environment:
       - MONGO_HOST=mongodb
       - MONGO_PORT=27017
-      - MONGO_USER=isa
-      - MONGO_PASSWORD=12345
+      - MONGO_USER=breaze
+      - MONGO_PASSWORD=12345678
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=12345
-      - MONGO_URI=mongodb://isa:12345@mongodb:27017/open_directory?authSource=admin
+      - MYSQL_PASSWORD=12345678
     networks:
       - red_places_directory
 
   mongodb:
-    image: mongo:6.0
+    image: mongo
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=isa
-      - MONGO_INITDB_ROOT_PASSWORD=12345
+      - MONGO_INITDB_ROOT_USERNAME=breaze
+      - MONGO_INITDB_ROOT_PASSWORD=12345678
     volumes:
       - mongo_data:/data/db
     networks:
@@ -43,7 +42,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_ROOT_PASSWORD=12345678
     volumes:
       - mysql_data:/var/lib/sql
     networks:
