@@ -12,6 +12,7 @@ import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/CreateCategory.dto';
 import { UpdateCategoryDto } from './dto/UpdateCategory.dto';
 import { Category } from './categories.entity';
+import { SqlTrackerService } from '../history/sql-tracker.service';
 
 /**
  * Controlador para gestionar las categorías.
@@ -19,7 +20,10 @@ import { Category } from './categories.entity';
  */
 @Controller('categories')
 export class CategoriesController {
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(
+    private readonly categoriesService: CategoriesService,
+    private readonly sqlTracker: SqlTrackerService,
+  ) {}
 
   /**
    * Crea una nueva categoría.
@@ -27,8 +31,19 @@ export class CategoriesController {
    * @returns La categoría creada.
    */
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
-    return this.categoriesService.create(createCategoryDto);
+  async create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
+    const newCategory = await this.categoriesService.create(createCategoryDto);
+    
+    // Registrar la operación en el historial
+    await this.sqlTracker.trackSqlOperation(
+      'categories',            // Nombre de la tabla
+      'INSERT',                // Tipo de operación
+      createCategoryDto,       // Datos enviados
+      newCategory.id,          // ID de la entidad
+      undefined,               // ID del usuario (no disponible)
+    );
+    
+    return newCategory;
   }
 
   /**
@@ -36,8 +51,19 @@ export class CategoriesController {
    * @returns Lista de categorías.
    */
   @Get()
-  findAll(): Promise<Category[]> {
-    return this.categoriesService.findAll();
+  async findAll(): Promise<Category[]> {
+    const categories = await this.categoriesService.findAll();
+    
+    // Registrar la operación en el historial
+    await this.sqlTracker.trackSqlOperation(
+      'categories',            // Nombre de la tabla
+      'SELECT',                // Tipo de operación
+      {},                      // Datos de la operación (vacío para SELECT)
+      undefined,               // ID de la entidad (no aplica para SELECT)
+      undefined,               // ID del usuario (si está disponible)
+    );
+    
+    return categories;
   }
 
   /**
@@ -46,8 +72,19 @@ export class CategoriesController {
    * @returns La categoría correspondiente al ID proporcionado.
    */
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<Category> {
-    return this.categoriesService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Category> {
+    const category = await this.categoriesService.findOne(id);
+    
+    // Registrar la operación en el historial
+    await this.sqlTracker.trackSqlOperation(
+      'categories',            // Nombre de la tabla
+      'SELECT',                // Tipo de operación
+      { id },                  // Datos de la operación
+      id,                      // ID de la entidad
+      undefined,               // ID del usuario (si está disponible)
+    );
+    
+    return category;
   }
 
   /**
@@ -57,11 +94,22 @@ export class CategoriesController {
    * @returns La categoría actualizada.
    */
   @Put(':id')
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ): Promise<Category> {
-    return this.categoriesService.update(id, updateCategoryDto);
+    const updatedCategory = await this.categoriesService.update(id, updateCategoryDto);
+    
+    // Registrar la operación en el historial
+    await this.sqlTracker.trackSqlOperation(
+      'categories',            // Nombre de la tabla
+      'UPDATE',                // Tipo de operación
+      updateCategoryDto,       // Datos de actualización
+      id,                      // ID de la entidad
+      undefined,               // ID del usuario (si está disponible)
+    );
+    
+    return updatedCategory;
   }
 
   /**
@@ -70,7 +118,18 @@ export class CategoriesController {
    * @returns Una promesa que indica si la operación fue exitosa.
    */
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
-    return this.categoriesService.remove(id);
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    const categoryToDelete = await this.categoriesService.findOne(id);
+    
+    await this.categoriesService.remove(id);
+    
+    // Registrar la operación en el historial
+    await this.sqlTracker.trackSqlOperation(
+      'categories',            // Nombre de la tabla
+      'DELETE',                // Tipo de operación
+      categoryToDelete,        // Datos de la entidad eliminada
+      id,                      // ID de la entidad
+      undefined,               // ID del usuario (si está disponible)
+    );
   }
 }

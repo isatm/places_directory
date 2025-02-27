@@ -69,7 +69,12 @@ export class PlacesService {
    * @throws NotFoundException si el lugar no existe.
    */
   async remove(id: number): Promise<void> {
-    const place = await this.findOne(id);
-    await place.destroy();
+    const result = await this.placeModel.destroy({
+      where: { place_id: id }
+    });
+    
+    if (result === 0) {
+      throw new NotFoundException(`El registro con ID ${id} no fue encontrado.`);
+    }
   }
 }
