@@ -10,7 +10,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { QuestionsAndAnswersModule } from './questionsAndAnswers/questionsAndAnswers.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MediaModule } from './media/media.module';
-import { mongoConfig } from './config/mongo.config';
+import { SqlTrackerModule } from './history/sql-tracker.module';
 
 @Module({
   imports: [
@@ -24,6 +24,7 @@ import { mongoConfig } from './config/mongo.config';
     PlaceTagsModule,
     MongooseModule.forRoot(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/demo_nest?authSource=admin`),
     MediaModule,
+    SqlTrackerModule,
   ],
 })
 
