@@ -13,7 +13,6 @@ export class ReviewsService {
   /**
    * Constructor del servicio de reseñas.
    * @param reviewModel Modelo de Mongoose para la entidad Review.
-   * @param fileService Servicio para gestionar archivos multimedia.
    */
   constructor(
     @InjectModel(Review.name)
@@ -23,7 +22,6 @@ export class ReviewsService {
   /**
    * Crea una nueva reseña con archivos multimedia opcionales.
    * @param createReviewDto Datos para la creación de la reseña.
-   * @param files Archivos multimedia adjuntos a la reseña.
    * @returns La reseña creada y guardada en la base de datos.
    */
   async create(createReviewDto: CreateReviewDto) {
@@ -32,6 +30,7 @@ export class ReviewsService {
     });
     return createdReview.save();
   }
+
   /**
    * Obtiene todas las reseñas asociadas a un lugar específico.
    * @param placeId Identificador del lugar.
@@ -51,6 +50,15 @@ export class ReviewsService {
   }
 
   /**
+   * Obtiene una reseña por su reviewId.
+   * @param reviewId Identificador único de la reseña.
+   * @returns La reseña encontrada o null si no existe.
+   */
+  async findOneByReviewId(reviewId: string) {
+    return this.reviewModel.findOne({ reviewId }).exec();
+  }
+
+  /**
    * Actualiza una reseña existente.
    * @param id Identificador de la reseña a actualizar.
    * @param updateReviewDto Datos a actualizar en la reseña.
@@ -63,11 +71,32 @@ export class ReviewsService {
   }
 
   /**
+   * Actualiza una reseña existente por su reviewId.
+   * @param reviewId Identificador único de la reseña a actualizar.
+   * @param updateReviewDto Datos a actualizar en la reseña.
+   * @returns La reseña actualizada.
+   */
+  async updateByReviewId(reviewId: string, updateReviewDto: UpdateReviewDto) {
+    return this.reviewModel
+      .findOneAndUpdate({ reviewId }, updateReviewDto, { new: true })
+      .exec();
+  }
+
+  /**
    * Elimina una reseña por su identificador.
    * @param id Identificador de la reseña a eliminar.
    * @returns La reseña eliminada o null si no existe.
    */
   async remove(id: string) {
     return this.reviewModel.findByIdAndDelete(id).exec();
+  }
+
+  /**
+   * Elimina una reseña por su reviewId.
+   * @param reviewId Identificador único de la reseña a eliminar.
+   * @returns La reseña eliminada o null si no existe.
+   */
+  async removeByReviewId(reviewId: string) {
+    return this.reviewModel.findOneAndDelete({ reviewId }).exec();
   }
 }

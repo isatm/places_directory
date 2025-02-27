@@ -2,8 +2,6 @@ import {
   Controller,
   Post,
   Body,
-  UploadedFiles,
-  UseInterceptors,
   Param,
   Get,
   Put,
@@ -26,19 +24,16 @@ export class ReviewsController {
 
   /**
    * Crea una nueva reseña con archivos multimedia opcionales.
-   * @param files Archivos multimedia subidos.
+   * @param createReviewDto Datos para la creación de la reseña.
    * @returns La reseña creada.
    */
   @Post()
   async create(@Body() createReviewDto: CreateReviewDto) {
-  // Creamos una copia del DTO para evitar modificar el original
     const reviewData = { ...createReviewDto };
-
     if (!reviewData.multimedia) {
       reviewData.multimedia = [];
     }
-  
-  return this.reviewsService.create(reviewData);
+    return this.reviewsService.create(reviewData);
   }
 
   /**
@@ -56,9 +51,19 @@ export class ReviewsController {
    * @param id Identificador de la reseña.
    * @returns La reseña encontrada o null si no existe.
    */
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get('id/:id')
+  findOneById(@Param('id') id: string) {
     return this.reviewsService.findOne(id);
+  }
+
+  /**
+   * Obtiene una reseña por su reviewId.
+   * @param reviewId Identificador único de la reseña.
+   * @returns La reseña encontrada o null si no existe.
+   */
+  @Get(':reviewId')
+  findOneByReviewId(@Param('reviewId') reviewId: string) {
+    return this.reviewsService.findOneByReviewId(reviewId);
   }
 
   /**
@@ -67,9 +72,20 @@ export class ReviewsController {
    * @param updateReviewDto Datos a actualizar en la reseña.
    * @returns La reseña actualizada.
    */
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
+  @Put('id/:id')
+  updateById(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
     return this.reviewsService.update(id, updateReviewDto);
+  }
+
+  /**
+   * Actualiza una reseña existente por su reviewId.
+   * @param reviewId Identificador único de la reseña a actualizar.
+   * @param updateReviewDto Datos a actualizar en la reseña.
+   * @returns La reseña actualizada.
+   */
+  @Put(':reviewId')
+  updateByReviewId(@Param('reviewId') reviewId: string, @Body() updateReviewDto: UpdateReviewDto) {
+    return this.reviewsService.updateByReviewId(reviewId, updateReviewDto);
   }
 
   /**
@@ -77,8 +93,18 @@ export class ReviewsController {
    * @param id Identificador de la reseña a eliminar.
    * @returns La reseña eliminada o null si no existe.
    */
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete('id/:id')
+  removeById(@Param('id') id: string) {
     return this.reviewsService.remove(id);
+  }
+
+  /**
+   * Elimina una reseña por su reviewId.
+   * @param reviewId Identificador único de la reseña a eliminar.
+   * @returns La reseña eliminada o null si no existe.
+   */
+  @Delete(':reviewId')
+  removeByReviewId(@Param('reviewId') reviewId: string) {
+    return this.reviewsService.removeByReviewId(reviewId);
   }
 }

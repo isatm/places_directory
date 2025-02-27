@@ -13,6 +13,12 @@ export type ReviewDocument = HydratedDocument<Review>;
 @Schema({ timestamps: true })
 export class Review {
   /**
+   * Identificador único de la reseña.
+   */
+  @Prop({ required: true, unique: true })
+  reviewId: string;
+
+  /**
    * Identificador del lugar al que pertenece la reseña.
    */
   @Prop({ required: true })
@@ -49,6 +55,12 @@ export class Review {
    */
   @Prop({ type: [String] })
   multimedia: string[];
+
+  /**
+   * Identificador de la reseña padre, si esta reseña es un comentario de otra reseña.
+   */
+  @Prop({ type: String, default: null })
+  parentId: string | null;
 }
 
 /**
