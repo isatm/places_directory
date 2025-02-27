@@ -31,13 +31,6 @@ curl -X POST http://localhost:4000/categories \
     "cat_name": "Restaurantes y Cafeterías"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "cat_id": 1,
-  "cat_name": "Restaurantes y Cafeterías"
-}
-```
 
 ### [GET] Obtener todas las categorías
 - **URL**: `/categories`
@@ -46,19 +39,6 @@ curl -X POST http://localhost:4000/categories \
 ```bash
 curl -X GET http://localhost:4000/categories
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "cat_id": 1,
-    "cat_name": "Restaurantes y Cafeterías"
-  },
-  {
-    "cat_id": 2,
-    "cat_name": "Parques y Recreación"
-  }
-]
-```
 
 ### [GET] Obtener una categoría por ID
 - **URL**: `/categories/{id}`
@@ -66,13 +46,6 @@ curl -X GET http://localhost:4000/categories
 - **Ejemplo CURL**:
 ```bash
 curl -X GET http://localhost:4000/categories/1
-```
-- **Respuesta esperada**:
-```json
-{
-  "cat_id": 1,
-  "cat_name": "Restaurantes y Cafeterías"
-}
 ```
 
 ### [PUT] Actualizar una categoría
@@ -92,13 +65,6 @@ curl -X PUT http://localhost:4000/categories/1 \
     "cat_name": "Restaurantes Gourmet"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "cat_id": 1,
-  "cat_name": "Restaurantes Gourmet"
-}
-```
 
 ### [DELETE] Eliminar una categoría
 - **URL**: `/categories/{id}`
@@ -106,12 +72,6 @@ curl -X PUT http://localhost:4000/categories/1 \
 - **Ejemplo CURL**:
 ```bash
 curl -X DELETE http://localhost:4000/categories/1
-```
-- **Respuesta esperada**: Respuesta vacía con código 204 No Content o:
-```json
-{
-  "message": "Categoría eliminada correctamente"
-}
 ```
 
 ---
@@ -135,13 +95,6 @@ curl -X POST http://localhost:4000/tags \
     "tag_name": "Pet-Friendly"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "tag_id": 1,
-  "tag_name": "Pet-Friendly"
-}
-```
 
 ### [GET] Obtener todas las etiquetas
 - **URL**: `/tags`
@@ -150,19 +103,6 @@ curl -X POST http://localhost:4000/tags \
 ```bash
 curl -X GET http://localhost:4000/tags
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "tag_id": 1,
-    "tag_name": "Pet-Friendly"
-  },
-  {
-    "tag_id": 2,
-    "tag_name": "Wi-Fi Gratis"
-  }
-]
-```
 
 ### [GET] Obtener una etiqueta por ID
 - **URL**: `/tags/{id}`
@@ -170,13 +110,6 @@ curl -X GET http://localhost:4000/tags
 - **Ejemplo CURL**:
 ```bash
 curl -X GET http://localhost:4000/tags/1
-```
-- **Respuesta esperada**:
-```json
-{
-  "tag_id": 1,
-  "tag_name": "Pet-Friendly"
-}
 ```
 
 ### [PUT] Actualizar una etiqueta
@@ -196,13 +129,6 @@ curl -X PUT http://localhost:4000/tags/1 \
     "tag_name": "Amigable con Mascotas"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "tag_id": 1,
-  "tag_name": "Amigable con Mascotas"
-}
-```
 
 ### [DELETE] Eliminar una etiqueta
 - **URL**: `/tags/{id}`
@@ -210,12 +136,6 @@ curl -X PUT http://localhost:4000/tags/1 \
 - **Ejemplo CURL**:
 ```bash
 curl -X DELETE http://localhost:4000/tags/1
-```
-- **Respuesta esperada**: Respuesta vacía con código 204 No Content o:
-```json
-{
-  "message": "Etiqueta eliminada correctamente"
-}
 ```
 
 ---
@@ -249,20 +169,6 @@ curl -X POST http://localhost:4000/places \
     "categoryId": 1
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "place_id": 1,
-  "place_name": "Cafetería El Aroma",
-  "place_address": "Calle Principal 123",
-  "place_type": "café",
-  "place_hours": "Lun-Vie: 8:00-20:00, Sáb-Dom: 9:00-18:00",
-  "place_description": "Cafetería acogedora con variedad de bebidas y postres",
-  "categoryId": 1,
-  "createdAt": "2025-02-27T18:52:15.000Z",
-  "updatedAt": "2025-02-27T18:52:15.000Z"
-}
-```
 
 ### [GET] Obtener todos los lugares
 - **URL**: `/places`
@@ -271,22 +177,6 @@ curl -X POST http://localhost:4000/places \
 ```bash
 curl -X GET http://localhost:4000/places
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "place_id": 1,
-    "place_name": "Cafetería El Aroma",
-    "place_address": "Calle Principal 123",
-    "place_type": "café",
-    "place_hours": "Lun-Vie: 8:00-20:00, Sáb-Dom: 9:00-18:00",
-    "place_description": "Cafetería acogedora con variedad de bebidas y postres",
-    "categoryId": 1,
-    "createdAt": "2025-02-27T18:52:15.000Z",
-    "updatedAt": "2025-02-27T18:52:15.000Z"
-  }
-]
-```
 
 ### [GET] Obtener un lugar por ID
 - **URL**: `/places/{id}`
@@ -294,20 +184,6 @@ curl -X GET http://localhost:4000/places
 - **Ejemplo CURL**:
 ```bash
 curl -X GET http://localhost:4000/places/1
-```
-- **Respuesta esperada**:
-```json
-{
-  "place_id": 1,
-  "place_name": "Cafetería El Aroma",
-  "place_address": "Calle Principal 123",
-  "place_type": "café",
-  "place_hours": "Lun-Vie: 8:00-20:00, Sáb-Dom: 9:00-18:00",
-  "place_description": "Cafetería acogedora con variedad de bebidas y postres",
-  "categoryId": 1,
-  "createdAt": "2025-02-27T18:52:15.000Z",
-  "updatedAt": "2025-02-27T18:52:15.000Z"
-}
 ```
 
 ### [PATCH] Actualizar un lugar
@@ -329,20 +205,6 @@ curl -X PATCH http://localhost:4000/places/1 \
     "place_hours": "Lun-Dom: 8:00-22:00"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "place_id": 1,
-  "place_name": "Cafetería El Aroma Premium",
-  "place_address": "Calle Principal 123",
-  "place_type": "café",
-  "place_hours": "Lun-Dom: 8:00-22:00",
-  "place_description": "Cafetería acogedora con variedad de bebidas y postres",
-  "categoryId": 1,
-  "createdAt": "2025-02-27T18:52:15.000Z",
-  "updatedAt": "2025-02-27T18:52:15.956Z"
-}
-```
 
 ### [DELETE] Eliminar un lugar
 - **URL**: `/places/{id}`
@@ -350,12 +212,6 @@ curl -X PATCH http://localhost:4000/places/1 \
 - **Ejemplo CURL**:
 ```bash
 curl -X DELETE http://localhost:4000/places/1
-```
-- **Respuesta esperada**: Respuesta vacía con código 204 No Content o:
-```json
-{
-  "message": "Lugar eliminado correctamente"
-}
 ```
 
 ---
@@ -381,13 +237,6 @@ curl -X POST http://localhost:4000/place-tags \
     "tag_id": 1
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "place_id": 1,
-  "tag_id": 1
-}
-```
 
 ### [GET] Obtener todas las relaciones entre lugares y etiquetas
 - **URL**: `/place-tags`
@@ -395,19 +244,6 @@ curl -X POST http://localhost:4000/place-tags \
 - **Ejemplo CURL**:
 ```bash
 curl -X GET http://localhost:4000/place-tags
-```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "place_id": 1,
-    "tag_id": 1
-  },
-  {
-    "place_id": 1,
-    "tag_id": 2
-  }
-]
 ```
 
 ### [DELETE] Eliminar una relación entre lugar y etiqueta
@@ -429,12 +265,6 @@ curl -X DELETE http://localhost:4000/place-tags \
     "tag_id": 1
   }'
 ```
-- **Respuesta esperada**: Respuesta vacía con código 204 No Content o:
-```json
-{
-  "message": "Relación eliminada correctamente"
-}
-```
 
 ---
 
@@ -442,11 +272,11 @@ curl -X DELETE http://localhost:4000/place-tags \
 
 ### [POST] Subir una imagen
 - **URL**: `/media`
-- **Descripción**: Registra una nueva imagen para un lugar.
+- **Descripción**: Registra una nueva imagen para un lugar utilizando base64.
 - **Body (JSON)**:
 ```json
 {
-  "media_url": "https://ejemplo.com/images/cafeteria1.jpg",
+  "media_base64": "data:image/jpeg;base64,/9j/4AAQSkZ...",
   "place_id": 1
 }
 ```
@@ -455,17 +285,9 @@ curl -X DELETE http://localhost:4000/place-tags \
 curl -X POST http://localhost:4000/media \
   -H "Content-Type: application/json" \
   -d '{
-    "media_url": "https://ejemplo.com/images/cafeteria1.jpg",
+    "media_base64": "'$(base64 -w 0 ./imagen1.jpg)'",
     "place_id": 1
   }'
-```
-- **Respuesta esperada**:
-```json
-{
-  "media_id": 1,
-  "media_url": "https://ejemplo.com/images/cafeteria1.jpg",
-  "place_id": 1
-}
 ```
 
 ### [GET] Obtener todas las imágenes
@@ -475,16 +297,6 @@ curl -X POST http://localhost:4000/media \
 ```bash
 curl -X GET http://localhost:4000/media
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "media_id": 1,
-    "media_url": "https://ejemplo.com/images/cafeteria1.jpg",
-    "place_id": 1
-  }
-]
-```
 
 ### [GET] Obtener una imagen por ID
 - **URL**: `/media/{id}`
@@ -493,22 +305,14 @@ curl -X GET http://localhost:4000/media
 ```bash
 curl -X GET http://localhost:4000/media/1
 ```
-- **Respuesta esperada**:
-```json
-{
-  "media_id": 1,
-  "media_url": "https://ejemplo.com/images/cafeteria1.jpg",
-  "place_id": 1
-}
-```
 
 ### [PUT] Actualizar una imagen
 - **URL**: `/media/{id}`
-- **Descripción**: Actualiza una imagen existente.
+- **Descripción**: Actualiza una imagen existente con nueva codificación base64.
 - **Body (JSON)**:
 ```json
 {
-  "media_url": "https://ejemplo.com/images/cafeteria_nueva.jpg"
+  "media_base64": "data:image/jpeg;base64,/9j/4AAQSkZ..."
 }
 ```
 - **Ejemplo CURL**:
@@ -516,16 +320,8 @@ curl -X GET http://localhost:4000/media/1
 curl -X PUT http://localhost:4000/media/1 \
   -H "Content-Type: application/json" \
   -d '{
-    "media_url": "https://ejemplo.com/images/cafeteria_nueva.jpg"
+    "media_base64": "'$(base64 -w 0 ./imagen1.jpg)'"
   }'
-```
-- **Respuesta esperada**:
-```json
-{
-  "media_id": 1,
-  "media_url": "https://ejemplo.com/images/cafeteria_nueva.jpg",
-  "place_id": 1
-}
 ```
 
 ### [DELETE] Eliminar una imagen
@@ -535,12 +331,6 @@ curl -X PUT http://localhost:4000/media/1 \
 ```bash
 curl -X DELETE http://localhost:4000/media/1
 ```
-- **Respuesta esperada**: Respuesta vacía con código 204 No Content o:
-```json
-{
-  "message": "Imagen eliminada correctamente"
-}
-```
 
 ---
 
@@ -548,7 +338,7 @@ curl -X DELETE http://localhost:4000/media/1
 
 ### [POST] Crear una reseña
 - **URL**: `/reviews`
-- **Descripción**: Crea una nueva reseña para un lugar.
+- **Descripción**: Crea una nueva reseña para un lugar con imágenes en base64.
 - **Body (JSON)**:
 ```json
 {
@@ -557,7 +347,7 @@ curl -X DELETE http://localhost:4000/media/1
   "user": "usuario123",
   "rating": 4,
   "comment": "Excelente servicio y ambiente agradable",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"]
+  "multimedia": ["data:image/jpeg;base64,/9j/4AAQSkZ...", "data:image/jpeg;base64,/8d/4gTKsl..."]
 }
 ```
 - **Ejemplo CURL**:
@@ -570,24 +360,8 @@ curl -X POST http://localhost:4000/reviews \
     "user": "usuario123",
     "rating": 4,
     "comment": "Excelente servicio y ambiente agradable",
-    "multimedia": ["imagen1.jpg", "imagen2.jpg"]
+    "multimedia": ["'$(base64 -w 0 ./imagen1.jpg)'", "'$(base64 -w 0 ./imagen2.jpg)'"]
   }'
-```
-- **Respuesta esperada**:
-```json
-{
-  "reviewId": "rev-123456",
-  "placeId": "1",
-  "user": "usuario123",
-  "rating": 4,
-  "comment": "Excelente servicio y ambiente agradable",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-  "parentId": null,
-  "_id": "67c0b460b08f46d9ae516540",
-  "createdAt": "2025-02-27T18:52:16.661Z",
-  "updatedAt": "2025-02-27T18:52:16.661Z",
-  "__v": 0
-}
 ```
 
 ### [GET] Obtener todas las reseñas de un lugar
@@ -597,24 +371,6 @@ curl -X POST http://localhost:4000/reviews \
 ```bash
 curl -X GET http://localhost:4000/reviews/place/1
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "_id": "67c0b460b08f46d9ae516540",
-    "reviewId": "rev-123456",
-    "placeId": "1",
-    "user": "usuario123",
-    "rating": 4,
-    "comment": "Excelente servicio y ambiente agradable",
-    "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-    "parentId": null,
-    "createdAt": "2025-02-27T18:52:16.661Z",
-    "updatedAt": "2025-02-27T18:52:16.661Z",
-    "__v": 0
-  }
-]
-```
 
 ### [GET] Obtener una reseña por reviewId
 - **URL**: `/reviews/{reviewId}`
@@ -622,22 +378,6 @@ curl -X GET http://localhost:4000/reviews/place/1
 - **Ejemplo CURL**:
 ```bash
 curl -X GET http://localhost:4000/reviews/rev-123456
-```
-- **Respuesta esperada**:
-```json
-{
-  "_id": "67c0b460b08f46d9ae516540",
-  "reviewId": "rev-123456",
-  "placeId": "1",
-  "user": "usuario123",
-  "rating": 4,
-  "comment": "Excelente servicio y ambiente agradable",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-  "parentId": null,
-  "createdAt": "2025-02-27T18:52:16.661Z",
-  "updatedAt": "2025-02-27T18:52:16.661Z",
-  "__v": 0
-}
 ```
 
 ### [GET] Obtener una reseña por ID
@@ -647,22 +387,6 @@ curl -X GET http://localhost:4000/reviews/rev-123456
 ```bash
 curl -X GET http://localhost:4000/reviews/id/67c0b460b08f46d9ae516540
 ```
-- **Respuesta esperada**:
-```json
-{
-  "_id": "67c0b460b08f46d9ae516540",
-  "reviewId": "rev-123456",
-  "placeId": "1",
-  "user": "usuario123",
-  "rating": 4,
-  "comment": "Excelente servicio y ambiente agradable",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-  "parentId": null,
-  "createdAt": "2025-02-27T18:52:16.661Z",
-  "updatedAt": "2025-02-27T18:52:16.661Z",
-  "__v": 0
-}
-```
 
 ### [PUT] Actualizar una reseña por reviewId
 - **URL**: `/reviews/{reviewId}`
@@ -671,7 +395,8 @@ curl -X GET http://localhost:4000/reviews/id/67c0b460b08f46d9ae516540
 ```json
 {
   "rating": 5,
-  "comment": "Servicio excepcional y ambiente muy acogedor"
+  "comment": "Servicio excepcional y ambiente muy acogedor",
+  "multimedia": ["data:image/jpeg;base64,/9j/4AAQSkZ..."]
 }
 ```
 - **Ejemplo CURL**:
@@ -680,24 +405,9 @@ curl -X PUT http://localhost:4000/reviews/rev-123456 \
   -H "Content-Type: application/json" \
   -d '{
     "rating": 5,
-    "comment": "Servicio excepcional y ambiente muy acogedor"
+    "comment": "Servicio excepcional y ambiente muy acogedor",
+    "multimedia": ["'$(base64 -w 0 ./imagen1.jpg)'"]
   }'
-```
-- **Respuesta esperada**:
-```json
-{
-  "_id": "67c0b460b08f46d9ae516540",
-  "reviewId": "rev-123456",
-  "placeId": "1",
-  "user": "usuario123",
-  "rating": 5,
-  "comment": "Servicio excepcional y ambiente muy acogedor",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-  "parentId": null,
-  "createdAt": "2025-02-27T18:52:16.661Z",
-  "updatedAt": "2025-02-27T18:52:16.903Z",
-  "__v": 0
-}
 ```
 
 ### [PUT] Actualizar una reseña por ID
@@ -707,7 +417,8 @@ curl -X PUT http://localhost:4000/reviews/rev-123456 \
 ```json
 {
   "rating": 5,
-  "comment": "Servicio excepcional y ambiente muy acogedor"
+  "comment": "Servicio excepcional y ambiente muy acogedor",
+  "multimedia": ["data:image/jpeg;base64,/9j/4AAQSkZ..."]
 }
 ```
 - **Ejemplo CURL**:
@@ -716,10 +427,10 @@ curl -X PUT http://localhost:4000/reviews/id/67c0b460b08f46d9ae516540 \
   -H "Content-Type: application/json" \
   -d '{
     "rating": 5,
-    "comment": "Servicio excepcional y ambiente muy acogedor"
+    "comment": "Servicio excepcional y ambiente muy acogedor",
+    "multimedia": ["'$(base64 -w 0 ./imagen1.jpg)'"]
   }'
 ```
-- **Respuesta esperada**: Similar a la anterior.
 
 ### [DELETE] Eliminar una reseña por reviewId
 - **URL**: `/reviews/{reviewId}`
@@ -727,22 +438,6 @@ curl -X PUT http://localhost:4000/reviews/id/67c0b460b08f46d9ae516540 \
 - **Ejemplo CURL**:
 ```bash
 curl -X DELETE http://localhost:4000/reviews/rev-123456
-```
-- **Respuesta esperada**:
-```json
-{
-  "_id": "67c0b460b08f46d9ae516540",
-  "reviewId": "rev-123456",
-  "placeId": "1",
-  "user": "usuario123",
-  "rating": 5,
-  "comment": "Servicio excepcional y ambiente muy acogedor",
-  "multimedia": ["imagen1.jpg", "imagen2.jpg"],
-  "parentId": null,
-  "createdAt": "2025-02-27T18:52:16.661Z",
-  "updatedAt": "2025-02-27T18:52:16.903Z",
-  "__v": 0
-}
 ```
 
 ### [DELETE] Eliminar una reseña por ID
@@ -752,7 +447,6 @@ curl -X DELETE http://localhost:4000/reviews/rev-123456
 ```bash
 curl -X DELETE http://localhost:4000/reviews/id/67c0b460b08f46d9ae516540
 ```
-- **Respuesta esperada**: Similar a la anterior.
 
 ---
 
@@ -779,18 +473,6 @@ curl -X POST http://localhost:4000/questions-and-answers \
     "questionText": "¿Tienen opciones sin gluten?"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "placeId": "1",
-  "user": "usuario123",
-  "questionText": "¿Tienen opciones sin gluten?",
-  "_id": "67c0b460b08f46d9ae516545",
-  "createdAt": "2025-02-27T18:52:16.975Z",
-  "updatedAt": "2025-02-27T18:52:16.975Z",
-  "__v": 0
-}
-```
 
 ### [POST] Crear una respuesta a una pregunta
 - **URL**: `/questions-and-answers`
@@ -815,19 +497,6 @@ curl -X POST http://localhost:4000/questions-and-answers \
     "parentId": "67c0b460b08f46d9ae516545"
   }'
 ```
-- **Respuesta esperada**:
-```json
-{
-  "placeId": "1",
-  "user": "dueño_lugar",
-  "answerText": "Sí, contamos con varias opciones sin gluten en nuestro menú.",
-  "parentId": "67c0b460b08f46d9ae516545",
-  "_id": "67c0b460b08f46d9ae516553",
-  "createdAt": "2025-02-27T18:52:16.609Z",
-  "updatedAt": "2025-02-27T18:52:16.609Z",
-  "__v": 0
-}
-```
 
 ### [GET] Obtener todas las preguntas y respuestas de un lugar
 - **URL**: `/questions-and-answers/place/{placeId}`
@@ -836,34 +505,11 @@ curl -X POST http://localhost:4000/questions-and-answers \
 ```bash
 curl -X GET http://localhost:4000/questions-and-answers/place/1
 ```
-- **Respuesta esperada**:
-```json
-[
-  {
-    "_id": "67c0b460b08f46d9ae516545",
-    "placeId": "1",
-    "user": "usuario123",
-    "questionText": "¿Tienen opciones sin gluten?",
-    "createdAt": "2025-02-27T18:52:16.975Z",
-    "updatedAt": "2025-02-27T18:52:16.975Z",
-    "__v": 0
-  },
-  {
-    "_id": "67c0b460b08f46d9ae516553",
-    "placeId": "1",
-    "user": "dueño_lugar",
-    "answerText": "Sí, contamos con varias opciones sin gluten en nuestro menú.",
-    "parentId": "67c0b460b08f46d9ae516545",
-    "createdAt": "2025-02-27T18:52:16.609Z",
-    "updatedAt": "2025-02-27T18:52:16.609Z",
-    "__v": 0
-  }
-]
-```
 
 ### [GET] Obtener una pregunta o respuesta por ID
 - **URL**: `/questions-and-answers/{id}`
 - **Descripción**: Obtiene una pregunta o respuesta específica por su ID.
 - **Ejemplo CURL**:
 ```bash
-curl -X GET http
+curl -X GET http://localhost:4000/questions-and-answers/67c0b460b08f46d9ae516545
+```
