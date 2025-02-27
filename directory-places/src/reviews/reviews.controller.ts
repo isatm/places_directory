@@ -33,8 +33,7 @@ export class ReviewsController {
   async create(@Body() createReviewDto: CreateReviewDto) {
   // Creamos una copia del DTO para evitar modificar el original
     const reviewData = { ...createReviewDto };
-  
-  // Si se incluyen imágenes en base64, se asignan al campo multimedia
+
     if (!reviewData.multimedia) {
       reviewData.multimedia = [];
     }

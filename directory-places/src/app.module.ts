@@ -26,6 +26,7 @@ import { mongoConfig } from './config/mongo.config';
     MediaModule,
   ],
 })
+
 export class AppModule implements OnModuleInit {
   private readonly logger = new Logger(AppModule.name);
   

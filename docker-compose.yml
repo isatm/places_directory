@@ -3,7 +3,7 @@ services:
     container_name: places
     build: .
     ports:
-      - "3000:3000"
+      - "4000:4000"
     volumes:
       - ./directory-places:/app
     depends_on:
@@ -44,7 +44,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=12345678
     volumes:
-      - mysql_data:/var/lib/sql
+      - mysql_data:/var/lib/mysql
     networks:
       - red_places_directory
 
