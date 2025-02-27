@@ -1,4 +1,4 @@
-import { IsString, IsNumber, Min, Max, IsOptional } from 'class-validator';
+import { IsString, IsNumber, Min, Max, IsOptional, IsArray } from 'class-validator';
 
 export class CreateReviewDto {
   @IsString()
@@ -15,4 +15,9 @@ export class CreateReviewDto {
   @IsOptional()
   @IsString()
   comment?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  multimedia?: string[]; // Arreglo de strings para imágenes en base64
 }

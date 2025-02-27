@@ -29,7 +29,18 @@ export class ReviewsController {
    * @param files Archivos multimedia subidos.
    * @returns La reseña creada.
    */
-  //TODO
+  @Post()
+  async create(@Body() createReviewDto: CreateReviewDto) {
+  // Creamos una copia del DTO para evitar modificar el original
+    const reviewData = { ...createReviewDto };
+  
+  // Si se incluyen imágenes en base64, se asignan al campo multimedia
+    if (!reviewData.multimedia) {
+      reviewData.multimedia = [];
+    }
+  
+  return this.reviewsService.create(reviewData);
+  }
 
   /**
    * Obtiene todas las reseñas de un lugar específico.

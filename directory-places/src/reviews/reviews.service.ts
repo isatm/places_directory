@@ -32,7 +32,6 @@ export class ReviewsService {
     });
     return createdReview.save();
   }
-
   /**
    * Obtiene todas las reseñas asociadas a un lugar específico.
    * @param placeId Identificador del lugar.
