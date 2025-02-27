@@ -9,10 +9,7 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { FilesInterceptor } from '@nestjs/platform-express';
 import { ReviewsService } from './reviews.service';
-import { File, Multer } from 'multer';
-import { Express } from 'express';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 
@@ -32,12 +29,7 @@ export class ReviewsController {
    * @param files Archivos multimedia subidos.
    * @returns La reseña creada.
    */
-  @Post()
-  @UseInterceptors(FilesInterceptor('files'))
-  async create(@UploadedFiles() files: Multer.File[]) {
-    const createReviewDto = new CreateReviewDto();
-    return this.reviewsService.create(createReviewDto, files);
-  }
+  //TODO
 
   /**
    * Obtiene todas las reseñas de un lugar específico.

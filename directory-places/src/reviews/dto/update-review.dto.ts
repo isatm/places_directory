@@ -14,5 +14,5 @@ export class UpdateReviewDto {
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  multimedia?: string[]; // URLs de imágenes o videos (opcional)
+  multimedia?: string[]; //  imágenes o videos (opcional)
 }

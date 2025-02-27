@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Multer } from 'multer';
 import { Model } from 'mongoose';
 import { Review } from './reviews.schema';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
-import { FileService } from '../file/file.service';
 
 /**
  * Servicio para gestionar las reseñas en la aplicación.
@@ -20,7 +18,6 @@ export class ReviewsService {
   constructor(
     @InjectModel(Review.name)
     private readonly reviewModel: Model<Review>,
-    private readonly fileService: FileService,
   ) {}
 
   /**
@@ -29,16 +26,10 @@ export class ReviewsService {
    * @param files Archivos multimedia adjuntos a la reseña.
    * @returns La reseña creada y guardada en la base de datos.
    */
-  async create(createReviewDto: CreateReviewDto, files: Multer.File[]) {
-    const fileIds = await Promise.all(
-      files.map((file) => this.fileService.uploadFile(file)),
-    );
-
+  async create(createReviewDto: CreateReviewDto) {
     const createdReview = new this.reviewModel({
       ...createReviewDto,
-      multimedia: fileIds,
     });
-
     return createdReview.save();
   }
 
